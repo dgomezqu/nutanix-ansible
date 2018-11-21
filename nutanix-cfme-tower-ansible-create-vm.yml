@@ -16,7 +16,7 @@
         validate_certs: no
         force_basic_auth: yes
         method: POST
-        status_code: 200
+        status_code: 202
         user: "{{ username }}"
         password: "{{ password }}"
         return_content: yes
