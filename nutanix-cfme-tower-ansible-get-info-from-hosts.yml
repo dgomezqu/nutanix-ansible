@@ -1,0 +1,28 @@
+---
+
+- name: Get some info from hosts
+  hosts: all
+  gather_facts: False
+  connection: local
+  vars:
+    base_url: "https://{{ nutanix_server }}:9440/PrismGateway/services/rest/v1"
+    username: "{{ lookup('env', 'ANSIBLE_USER') }}"
+    password: "{{ lookup('env', 'ANSIBLE_PASSWORD') }}"
+
+  tasks:
+    - name: Get hosts
+      uri:
+        url: "{{ base_url }}/hosts"
+        validate_certs: no
+        force_basic_auth: yes
+        method: GET
+        status_code: 200
+        user: "{{ username }}"
+        password: "{{ password }}"
+        body_format: json
+        return_content: yes
+      register: hostinfo
+
+    - name: Output info
+      debug: msg="DEBUG {{ item.name }}"
+        with_items: "{{ hostinfo.json.entities }}" 
