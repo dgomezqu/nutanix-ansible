@@ -25,4 +25,4 @@
 
     - name: Output info
       debug: msg="DEBUG {{ item.name }}"
-        with_items: "{{ hostinfo.json.entities }}" 
+      with_items: "{{ hostinfo.json.entities }}" 
