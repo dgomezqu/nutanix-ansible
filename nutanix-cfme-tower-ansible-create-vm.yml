@@ -1,0 +1,44 @@
+---
+
+- name: Create VM
+  hosts: all
+  gather_facts: False
+  connection: local
+  vars:
+    base_url: "https://{{ nutanix_server }}:9440/PrismGateway/services/rest/v1"
+    username: "{{ lookup('env', 'ANSIBLE_USER') }}"
+    password: "{{ lookup('env', 'ANSIBLE_PASSWORD') }}"
+
+  tasks:
+    - name: create VM
+      uri:
+        url: "{{ base_url }}/vms"
+        validate_certs: no
+        force_basic_auth: yes
+        method: POST
+        status_code: 200
+        user: "{{ username }}"
+        password: "{{ password }}"
+        return_content: yes
+        body: 
+          name: "{{ hostname }}"
+          memoryMb: 1024
+          numVcpus: 1
+          hypervisorType: Acropolis
+          description: "CoreOS Instance {{ etcd_instance }}"
+          vmCustomizationConfig:
+            userdata: "{{ lookup('file', filename) }}" 
+          vmDisks:
+            - isCdrom: false
+              isThinProvisioned: true
+              vmDiskCreate:
+                containerUuid: "a84d4b18-6656-43dd-8ca0-acc98c7cf7fb"
+                sizeMb: 20480
+            - isCdrom: true
+              vmDiskClone:
+                 containerUuid: "5da9f6a9-2b84-46d5-8970-1fb9997752c1"
+                 vmDiskUuid: "ac514e35-1d83-4bde-8da8-1190379e0d83"
+          vmNics:
+            - networkUuid: "205b7475-f572-4330-81d5-a2db4af8bfcf"
+              requestedIpAddress: "{{ inventory_hostname }}"
+        body_format: json
