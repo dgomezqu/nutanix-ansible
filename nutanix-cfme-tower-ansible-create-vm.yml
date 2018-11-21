@@ -1,13 +1,13 @@
 ---
 
 - name: Create VM
-  hosts: all
+  hosts: localhost
   gather_facts: False
   connection: local
   vars:
-    base_url: "https://{{ nutanix_server }}:9440/PrismGateway/services/rest/v1"
-    username: "{{ lookup('env', 'ANSIBLE_USER') }}"
-    password: "{{ lookup('env', 'ANSIBLE_PASSWORD') }}"
+    base_url: "https://{{ nutanix_server }}:9440/api/nutanix/v3"
+    username: "{{ lookup('env', 'NUTANIX_USER') }}"
+    password: "{{ lookup('env', 'NUTANIX_PASSWORD') }}"
 
   tasks:
     - name: create VM
