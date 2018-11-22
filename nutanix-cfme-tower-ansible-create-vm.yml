@@ -43,9 +43,16 @@
                 cloud_init:
                   user_data:
                     #cloud-config
-                    password: "{{ vm_password }}"
-                    chpasswd: {expire: False}
+                    debug: True
+                    disable_root: True
                     ssh_pwauth: True
                     ssh_authorized_keys:
                     - "{{ ansible_ssh_pub_key }}"
+                    chpasswd:
+                    list: |
+                      cloud-user:"{{ vm_password }}"
+                    expire: False
+                    runcmd:
+                     - sed -i'.orig' -e's/without-password/yes/' /etc/ssh/sshd_config
+                     - service sshd restart
         body_format: json
