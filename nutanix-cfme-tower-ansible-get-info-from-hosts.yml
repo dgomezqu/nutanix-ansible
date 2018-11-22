@@ -4,11 +4,7 @@
   hosts: localhost
   gather_facts: False
   connection: local
-  vars:
-    base_url: "https://{{ nutanix_server }}:9440/api/nutanix/v3"
-    username: "{{ lookup('env', 'NUTANIX_USER') }}"
-    password: "{{ lookup('env', 'NUTANIX_PASSWORD') }}"
-
+ 
   tasks:
     - name: Get hosts
       uri:
