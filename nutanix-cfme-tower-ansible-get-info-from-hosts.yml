@@ -9,13 +9,13 @@
     - name: Get hosts
       uri:
         url: "{{ base_url }}/hosts/list"
-          body:
-            filter: ''
-            kind: host
-            sort_order: ASCENDING
-            offset: 0
-            length: 1000
-            sort_attribute: ''
+        body:
+          filter: ''
+          kind: host
+          sort_order: ASCENDING
+          offset: 0
+          length: 1000
+          sort_attribute: ''
         validate_certs: no
         force_basic_auth: yes
         method: POST
