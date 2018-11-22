@@ -44,7 +44,13 @@
                   user_data:
                     debug: True
                     disable_root: True
-                    ssh_pwauth: False
-                    ssh_authorized_keys:
-                    - "{{ ansible_ssh_pub_key }}"
+                    ssh_pwauth: True
+                    chpasswd:
+                      list: |
+                        cloud-user:"{{ vm_password }}"
+                      expire: false
+                    runcmd:
+                    - sed -i'.orig' -e's/without-password/yes/' /etc/ssh/sshd_config
+                    - service sshd restart
+             
         body_format: json
