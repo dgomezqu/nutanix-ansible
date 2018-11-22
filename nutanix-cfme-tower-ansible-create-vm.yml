@@ -39,19 +39,4 @@
               num_vcpus_per_socket: "{{ num_vcpus_per_socket }}"
               memory_size_mib: "{{ memory_size_mib }}"
               power_state: "{{ power_state }}"
-              guest_customization:
-                cloud_init:
-                  user_data:
-                    "#cloud-config
-                    debug: True
-                    disable_root: True
-                    ssh_pwauth: True
-                    chpasswd:
-                      list: |
-                        cloud-user:{{ vm_password }}
-                      expire: false
-                    runcmd:
-                    - sed -i'.orig' -e's/without-password/yes/' /etc/ssh/sshd_config
-                    - service sshd restart | b64encode"
-             
         body_format: json
