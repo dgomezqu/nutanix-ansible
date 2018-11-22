@@ -39,4 +39,13 @@
               num_vcpus_per_socket: "{{ num_vcpus_per_socket }}"
               memory_size_mib: "{{ memory_size_mib }}"
               power_state: "{{ power_state }}"
+              guest_customization:
+                cloud_init:
+                  user_data:
+                    #cloud-config
+                    password: "{{ vm_password }}"
+                    chpasswd: {expire: False}
+                    ssh_pwauth: True
+                    ssh_authorized_keys:
+                    - "{{ ansible_ssh_pub_key }}"
         body_format: json
