@@ -48,7 +48,7 @@
                     ssh_pwauth: True
                     chpasswd:
                       list: |
-                        cloud-user:"{{ vm_password }}"
+                        cloud-user:{{ vm_password }}
                       expire: false
                     runcmd:
                     - sed -i'.orig' -e's/without-password/yes/' /etc/ssh/sshd_config
