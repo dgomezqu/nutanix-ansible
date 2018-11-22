@@ -41,5 +41,5 @@
               power_state: "{{ power_state }}"
               guest_customization:
                 cloud_init:
-                  user_data: {{ lookup('template','templates/vm-cloud-init.yml.j2') | b64encode }}
+                  user_data: "{{ lookup('template','templates/vm-cloud-init.yml.j2') | b64encode }}"
         body_format: json
