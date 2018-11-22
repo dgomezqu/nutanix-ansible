@@ -1,0 +1,12 @@
+---
+#cloud-config
+debug: True
+ssh_pwauth: True
+disable_root: True
+chpasswd:
+  list: |
+    cloud-user:{{ vm_password }}
+  expire: false
+runcmd:
+- sed -i'.orig' -e's/without-password/yes/' /etc/ssh/sshd_config
+- service sshd restart
