@@ -29,12 +29,12 @@
               - data_source_reference:
                   kind: image
                   uuid: "{{ image_uuid }}"
-              nic_list:
-              - ip_endpoint_list:
-                - ip: "{{ vm_ip }}"
-                subnet_reference:
-                  kind: subnet
-                  uuid: "{{ subnet_uuid }}"
+#              nic_list:
+#              - ip_endpoint_list:
+#                - ip: "{{ vm_ip }}"
+#                subnet_reference:
+#                  kind: subnet
+#                  uuid: "{{ subnet_uuid }}"
               num_sockets: "{{ num_sockets }}"
               num_vcpus_per_socket: "{{ num_vcpus_per_socket }}"
               memory_size_mib: "{{ memory_size_mib }}"
