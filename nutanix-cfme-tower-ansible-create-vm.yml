@@ -42,7 +42,6 @@
               guest_customization:
                 cloud_init:
                   user_data:
-                    #cloud-config
                     debug: True
                     disable_root: True
                     ssh_pwauth: False
