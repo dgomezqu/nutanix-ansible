@@ -2,9 +2,10 @@
 #cloud-config
 debug: True
 ssh_pwauth: True
-disable_root: True
+disable_root: False
 chpasswd:
   list: |
+    root::{{ vm_password }}
     cloud-user:{{ vm_password }}
   expire: false
 runcmd:
