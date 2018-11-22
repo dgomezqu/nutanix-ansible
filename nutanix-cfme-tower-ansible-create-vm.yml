@@ -28,7 +28,7 @@
               disk_list:
               - data_source_reference:
                   kind: image
-                  uuid: {{ image_uuid }}
+                  uuid: "{{ image_uuid }}"
               nic_list:
               - ip_endpoint_list:
                 - ip: "{{ vm_ip }}"
