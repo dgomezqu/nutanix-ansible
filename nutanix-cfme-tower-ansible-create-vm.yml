@@ -23,24 +23,22 @@
           spec:
             cluster_reference:
               kind: cluster
-              uuid: 00056ae0-7952-1f8a-0000-000000016b6d
-            name: testansible1
+              uuid: "{{ cluster_uuid }}"
+            name: "{{ vm_name }}"
             resources:
               disk_list:
               - data_source_reference:
                   kind: image
                   uuid: {{ image_uuid }}
                   name: string
-                disk_size_mib: 0
-                disk_size_bytes: 0
               nic_list:
               - ip_endpoint_list:
-                - ip: 192.168.1.100
+                - ip: "{{ vm_ip }}"
                 subnet_reference:
                   kind: subnet
-                  uuid: 59a03db1-209c-4b3a-9ad9-a811380a6e5d
-              num_sockets: 1
-              num_vcpus_per_socket: 1
-              memory_size_mib: 2048
-              power_state: 'ON'
+                  uuid: "{{ subnet_uuid }}"
+              num_sockets: "{{ num_sockets }}"
+              num_vcpus_per_socket: "{{ num_vcpus_per_socket }}"
+              memory_size_mib: "{{ memory_size_mib }}"
+              power_state: "{{ power_state }}"
         body_format: json
