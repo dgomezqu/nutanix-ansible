@@ -42,6 +42,7 @@
               guest_customization:
                 cloud_init:
                   user_data:
+                    "#cloud-config
                     debug: True
                     disable_root: True
                     ssh_pwauth: True
@@ -51,6 +52,6 @@
                       expire: false
                     runcmd:
                     - sed -i'.orig' -e's/without-password/yes/' /etc/ssh/sshd_config
-                    - service sshd restart
+                    - service sshd restart"
              
         body_format: json
